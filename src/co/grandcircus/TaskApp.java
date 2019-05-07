@@ -21,13 +21,19 @@ public class TaskApp {
 		taskList.add(new Task("Issac", "Write Prinicpia", LocalDate.parse("10/30/1684", Validator.f)));
 		taskList.add(new Task("Enrico", "Neutron-induced radioactivity", LocalDate.parse("04/25/1934", Validator.f)));
 		taskList.add(new Task("Alan", "Automatic Computing Engine", LocalDate.parse("05/08/1945", Validator.f)));
+		
+		int lightSwitch = 0;
 
 		// Greet user
 		System.out.println("Welcome to the Task Manager");
 		System.out.println("===========================");
 
 		while (true) {
+			if (lightSwitch == 0) {
 			showMenu();
+			} else if (lightSwitch == 1) {
+				showDMenu();
+			}
 
 			int choice = chooser(scan, "What would you like to do?: ");
 
@@ -42,11 +48,14 @@ public class TaskApp {
 			} else if (choice == 5) {
 				editTask(scan);
 			} else if (choice == 6) {
-				int go = Validator.getGo(scan, "Are you sure you want to quit? (y/n): ");
+				int go = Validator.getGo(scan, "Are you sure you want to quit? (y/n/...or something else...): ");
 				if (go == 1) {
 					break;
 				} else if (go == 2) {
 					continue;
+				} else if (go == 3) {
+					lightSwitch = 1;
+					Validator.quit();
 				} else {
 					System.out.println("error!");
 					continue;
@@ -58,7 +67,6 @@ public class TaskApp {
 		scan.close();
 	}
 
-	
 	public static void showMenu() {
 		System.out.println();
 		System.out.println("***************************");
@@ -73,7 +81,8 @@ public class TaskApp {
 		System.out.println("***************************");
 		System.out.println("***************************");
 	}
-
+	
+	
 	public static int chooser(Scanner scan, String prompt) {
 		char c;
 		int choice = 0;
@@ -234,6 +243,21 @@ public class TaskApp {
 		for (int i : underline)
 			System.out.print("~");
 		System.out.println();
+	}
+	
+	public static void showDMenu() {
+		System.out.println();
+		System.out.println("***********************%#-**|===-*****+**++**+************");
+		System.out.println("******* MENU *********%%##-*|===-****|========---*****+***");
+		System.out.println("*********************%%%####|====--**|========---*****+***");
+		System.out.println("*** 1. List tasks **|%%%######===--**|========---*****+***");
+		System.out.println("*** 2. Add task ****|%%%######===--**|====###=---**|=====-");
+		System.out.println("*** 3. Delete task *|%%%######===--**|==|%%####---*|=====-");
+		System.out.println("*** 4. Complete task|%%%######===--**|==|%%####---*|=====-");
+		System.out.println("*** 5. Edit task |%%%%%%#########--**|==|%%####---%%%%%###");
+		System.out.println("*** 6. Quit *****|%%%%%%#########--**|==|%%####---%%%%%###");
+		System.out.println("*************|%%%%%%%%%%#########$$$$$$$$%%####%%%%%%%%###");
+		System.out.println("*************|%%%%%%%%%%#########$$$$$$$$%%####%%%%%%%%###");
 	}
 
 }
